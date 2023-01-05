@@ -1,16 +1,12 @@
 @extends('back.layouts.auth-layout')
-@section('pageTitle', isset($pageTitle) ? $pageTitle : 'Forgot Password')
+@section('pageTitle', isset($pageTitle) ? $pageTitle : 'Forgot password')
 @section('content')
 
 <div class="page page-center">
       <div class="container-tight py-4">
-        <div class="text-center mb-4">
-          <a href="." class="navbar-brand navbar-brand-autodark"><img src="./static/logo.svg" alt="" height="36"></a>
-        </div>
         <form class="card card-md" action="." method="get">
           <div class="card-body">
-            <h2 class="card-title text-center mb-4">Forgot password</h2>
-            <p class="text-muted mb-4">Enter your email address and your password will be reset and emailed to you.</p>
+            <h2 class="card-title text-center mb-4">Forgot Password</h2>
             <div class="mb-3">
               <label class="form-label">Email address</label>
               <input type="email" class="form-control" placeholder="Enter email">
@@ -24,10 +20,10 @@
             </div>
           </div>
         </form>
-        <div class="text-center text-muted mt-3">
-          Forget it, <a href="./sign-in.html">send me back</a> to the sign in screen.
+        <div class="text-left text-muted mt-3">
+          <a href="{{ route('author.login') }}">Sign In</a> 
         </div>
       </div>
     </div>
-    
+
 @endsection
