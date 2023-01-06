@@ -23,8 +23,8 @@ class AuthorController extends Controller
         $path = 'back/dist/img/authors/';
         $file = $request->file('file');
         $old_picture = $user->getAttributes()['picture'];
-        $file_path = $path.$old.picture;
-        $new_picture_name = "AIMG".$user->id.time().rand(1,100000).'.jpeg';
+        $file_path = $path.$old_picture;
+        $new_picture_name = "AIMG".$user->id.time().rand(1,100000).'.jpg';
 
         if($old_picture != null && File::exists(public_path($file_path))){
             File::delete(public_path($file_patch));
