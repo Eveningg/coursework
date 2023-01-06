@@ -13,7 +13,7 @@ class AuthorLoginForm extends Component
 
     public function LoginHandler(){
         $this->validate([
-            'email'=>'required|email|exists:user,email',
+            'email'=>'required|email|exists:users,email',
             'password'=>'required|min:5'
         ],[
             'email.required'=>'Enter Your Email Address',
