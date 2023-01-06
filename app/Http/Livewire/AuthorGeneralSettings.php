@@ -32,6 +32,7 @@ class AuthorGeneralSettings extends Component
 
         if($update){
             $this->showToastr('General Settings have Succesfully been Changed!','success');
+            $this->emit('updateAuthorFooter');
         }else{
             $this->showToastr('Something Went Wrong!', 'error');
         }
