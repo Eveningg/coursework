@@ -39,6 +39,6 @@
     @stack('scripts')
     @livewireScripts
     <script src="./back/dist/js/demo.min.js"></script>
-
+    
   </body>
 </html>
