@@ -85,7 +85,7 @@
                     </span>
                   </a>
                   <div class="dropdown-menu">
-                    <a class="dropdown-item" href="{{ route('author.settings') }}">
+                    <a class="dropdown-item" href="{{route('author.settings')}}">
                         General Settings
                     </a>
                   </div>

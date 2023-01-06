@@ -25,25 +25,7 @@
         <div class="card-body">
             <div class="tab-content">
                 <div class="tab-pane fade active show" id="tabs-home-17">
-                    <form action="">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="" class="form-label">Thread Name</label>
-                                    <input type="text" class="form-control" placeholder="Enter Thread Name">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="" class="form-label">Thread Email</label>
-                                    <input type="text" class="form-control" placeholder="Enter Thread Email">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="" class="form-label">Thread Description</label>
-                                    <textarea class="form-control" id="" cols="3" rows="3"></textarea>
-                                </div>
-                                <button class="btn btn-primary">Save Changes</button>
-                            </div>
-                        </div>
-                    </form>
+                    @livewire('author-general-settings')
                 </div>
                 <div class="tab-pane fade" id="tabs-profile-14" role="tabpanel">
                 <h4>Profile tab</h4>
