@@ -29,6 +29,9 @@ class AuthorPersonalDetails extends Component
             'username'=>$this->username,
             'biography'=>$this->biography
         ]);
+
+        $this->emit('updateAuthorProfileHeader');
+        $this->emit('updateTopHeader');
     }
 
     public function render()

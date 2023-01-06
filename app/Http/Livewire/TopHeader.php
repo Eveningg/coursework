@@ -8,6 +8,10 @@ class TopHeader extends Component
 {
     public $author;
 
+    protected $listeners = [
+        'updateTopHeader'=>'$refresh'
+    ];
+
     public function mount(){
         $this->author = User::find(auth('web')->id());
     }
