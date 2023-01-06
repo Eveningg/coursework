@@ -22,5 +22,23 @@ class AuthorController extends Controller
         $user = User::find(auth('web')->id());
         $path = 'back/dist/img/authors/';
         $file = $request->file('file');
+        $old_picture = $user->getAttributes()['picture'];
+        $file_path = $path.$old.picture;
+        $new_picture_name = "AIMG".$user->id.time().rand(1,100000).'.jpeg';
+
+        if($old_picture != null && File::exists(public_path($file_path))){
+            File::delete(public_path($file_patch));
+        }
+        $upload = $file->move(public_path($path), $new_picture_name);
+        if($upload){
+            $user->update([
+                'picture'=>$new_picture_name
+            ]);
+            return response()->json(['status'=>1, 'msg'=>'Your Profile Picture has Successfully Updated!']);
+        }
+        else{
+            return response()->json(['status'=>0, 'Something Went Wrong!']);
+        }
+
     }
 }
