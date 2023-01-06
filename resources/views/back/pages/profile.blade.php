@@ -23,33 +23,7 @@
             <div class="tab-pane active show" id="tabs-details">
                 <h4>Home tab</h4>
                 <div>
-                    <form method="get">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="mb-3">
-                                    <label class="form-label">Name</label>
-                                    <input type="text" class="form-control" name="example-text-input" placeholder="name">
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="mb-3">
-                                    <label class="form-label">username</label>
-                                    <input type="text" class="form-control" name="example-text-input" placeholder="Username">
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="mb-3">
-                                    <label class="form-label">Biography</label>
-                                    <input type="text" class="form-control" name="example-text-input" placeholder="email" disabled>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Textarea</label>
-                            <textarea class="form-control" name="example-textarea-input" rows="6" placeholder="content...">Biography...</textarea>
-                        </div>
-                        <button type="submit" class="btn btn-priamry">Save Changes</button>   
-                    </form>
+                    @livewire('author-personal-details')
                 </div>
             </div>
             <div class="tab-pane" id="tabs-password">
