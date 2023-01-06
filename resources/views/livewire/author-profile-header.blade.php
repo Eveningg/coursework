@@ -3,7 +3,7 @@
     <div class="page-header">
         <div class="row align-items-center">
             <div class="col-md-8">
-                <span class="avatar avatar-md" style="background-image: url(...)"></span>
+                <span class="avatar avatar-md" style="background-image: url({{$author->picture}})"></span>
             </div>
             <div class="col-md-6"">
                 <h2 class="page-title"> {{ $author->name }}</h2>
