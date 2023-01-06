@@ -16,5 +16,6 @@ Route::prefix('author')->name('author.')->group(function(){
         Route::get('/password/reset/{token}', [AuthorController::class,'ResetForm'])->name('reset-form');
         Route::view('/profile', 'back.pages.profile')->name('profile');
         Route::post('/change-profile-picture',[AuthorController::class,'changeProfilePicture'])->name('change-profile-picture');
+        Route::view('/settings','back.pages.settings')->name('settings');
     });
 });
