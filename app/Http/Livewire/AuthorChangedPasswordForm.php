@@ -26,6 +26,24 @@ class AuthorChangedPasswordForm extends Component
             'new_password.required'=>'Enter New Password:',
             'confirm_new_password.same'=>'The Confirmation Password must Equal New Password!'
         ]);
+
+        $query = User::find(auth('web')->id())->update([
+            'password'=>Hash::make($this->new_password)
+        ]);
+
+        if($query){
+            $this->showToastr('Your Password has Succesfully Updated!','success');
+            $this->current_password = $this->new_password = $this->confirm_new_password = null;
+        }else{
+            $this->showToastr('Something Went Wrong!','error');
+        }
+    }
+
+    public function showToastr($message, $type){
+        return $this->dispatchBrowserEvent('showToastr',[
+            'type'=>$type,
+            'message'=>$message
+        ]);
     }
     public function render()
     {
