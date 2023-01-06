@@ -27,7 +27,7 @@ class AuthorController extends Controller
         $new_picture_name = "AIMG".$user->id.time().rand(1,100000).'.jpg';
 
         if($old_picture != null && File::exists(public_path($file_path))){
-            File::delete(public_path($file_patch));
+            File::delete(public_path($file_path));
         }
         $upload = $file->move(public_path($path), $new_picture_name);
         if($upload){
@@ -35,10 +35,8 @@ class AuthorController extends Controller
                 'picture'=>$new_picture_name
             ]);
             return response()->json(['status'=>1, 'msg'=>'Your Profile Picture has Successfully Updated!']);
-        }
-        else{
+        }else{
             return response()->json(['status'=>0, 'Something Went Wrong!']);
         }
-
     }
 }
