@@ -11,6 +11,7 @@
     <link href="./back/dist/css/tabler-flags.min.css" rel="stylesheet"/>
     <link href="./back/dist/css/tabler-payments.min.css" rel="stylesheet"/>
     <link href="./back/dist/css/tabler-vendors.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="{{ asset('back/dist/libs/ijabo/ijabo.min.css') }}">
     @stack('stylesheets')
     @livewireScripts
     <link href="./back/dist/css/demo.min.css" rel="stylesheet"/>
@@ -33,6 +34,8 @@
     </div>
 
     <!-- Libs JS -->
+    <script src="{{ asset('back/dist/libs/jquery/jquery-3.6.0.min.js') }}"></script>
+    <script src="{{ asset('back/dist/libs/ijabo/ijabo.min.js') }}"></script>
     <script src="./back/dist/libs/apexcharts/dist/apexcharts.min.js"></script>
     <!-- Tabler Core -->
     <script src="./back/dist/js/tabler.min.js"></script>
