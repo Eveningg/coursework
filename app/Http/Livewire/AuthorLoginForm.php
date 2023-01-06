@@ -25,7 +25,14 @@ class AuthorLoginForm extends Component
         $creds = array('email' => $this->email, 'password'=>$this->password);
 
         if(Auth::guard('web')->attempt($creds) ){
-
+            
+            $checkUser = User::where('email', $this->email)->first();
+            if($checkUser->blocked==1){
+                Auth::guard('web')->logout();
+                return redirect()->route('author login')->with('fail', "Your Account has been Blocked.");
+            }else{
+                return redirect()->route('author.home');
+            }
         }else{
             session()->flash('fail', 'Incorrect Email or Password!');
         }
