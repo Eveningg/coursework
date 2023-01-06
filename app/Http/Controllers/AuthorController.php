@@ -13,6 +13,6 @@ class AuthorController extends Controller
 
     public function logout(){
         Auth::guard('web')->logout();
-        return redirect()->route('auth.login');
+        return redirect()->route('author.login');
     }
 }

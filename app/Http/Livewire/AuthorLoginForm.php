@@ -15,14 +15,14 @@ class AuthorLoginForm extends Component
         $this->validate([
             'email'=>'required|email|exists:users,email',
             'password'=>'required|min:5'
-        ],[
+        ],[ 
             'email.required'=>'Enter Your Email Address',
             'email.email'=>'Invalid Email Address.',
             'email.exists'=>'This email is not registered!',
             'password.required'=>'A Password is Required.'
         ]);
 
-        $creds = array('email' => $this->email, 'password'=>$this->password);
+        $creds = array('email'=>$this->email, 'password'=>$this->password);
 
         if(Auth::guard('web')->attempt($creds) ){
             
