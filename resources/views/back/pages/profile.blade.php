@@ -58,17 +58,22 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="mb-3">
-                                    <label class="form-label">Username</label>
+                                    <label class="form-label">username</label>
                                     <input type="text" class="form-control" name="example-text-input" placeholder="Username">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="mb-3">
-                                    <label class="form-label">Email</label>
+                                    <label class="form-label">Biography</label>
                                     <input type="text" class="form-control" name="example-text-input" placeholder="email" disabled>
                                 </div>
                             </div>
                         </div>
+                        <div class="mb-3">
+                            <label class="form-label">Textarea</label>
+                            <textarea class="form-control" name="example-textarea-input" rows="6" placeholder="content...">Biography...</textarea>
+                        </div>
+                        <button type="submit" class="btn btn-priamry">Save Changes</button>   
                     </form>
                 </div>
             </div>
