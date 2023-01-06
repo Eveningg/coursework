@@ -17,7 +17,7 @@ class AuthorLoginForm extends Component
             'password'=>'required|min:5'
         ],[
             'email.required'=>'Enter Your Email Address',
-            'email.email'=>'invalid Email Address.',
+            'email.email'=>'Invalid Email Address.',
             'email.exists'=>'This email is not registered!',
             'password.required'=>'A Password is Required.'
         ]);
@@ -29,7 +29,7 @@ class AuthorLoginForm extends Component
             $checkUser = User::where('email', $this->email)->first();
             if($checkUser->blocked==1){
                 Auth::guard('web')->logout();
-                return redirect()->route('author login')->with('fail', "Your Account has been Blocked.");
+                return redirect()->route('author.login')->with('fail', "Your Account has been Blocked.");
             }else{
                 return redirect()->route('author.home');
             }
