@@ -19,8 +19,31 @@ class AuthorGeneralSettings extends Component
     }
 
     public function updateGeneralSettings(){
-        dd('test');
+        $this->validate([
+            'thread_name'=>'required',
+            'thread_email'=>'required|email',
+        ]);
+
+        $update = $this->settings->update([
+            'thread_name'=>$this->thread_name,
+            'thread_email'=>$this->thread_email,
+            'thread_description'=>$this->thread_description,
+        ]);
+
+        if($update){
+            $this->showToastr('General Settings have Succesfully been Changed!','success');
+        }else{
+            $this->showToastr('Something Went Wrong!', 'error');
+        }
     }
+
+    public function showToastr($message, $type){
+        return $this->dispatchBrowserEvent('showToastr',[
+            'type'=>$type,
+            'message'=>$message
+        ]);
+    }
+
     public function render()
     {
         return view('livewire.author-general-settings');
