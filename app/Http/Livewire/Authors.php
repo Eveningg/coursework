@@ -16,12 +16,18 @@ class Authors extends Component
     public $name, $email, $username, $author_type, $direct_publisher;
     public $search;
     public $perPage = 4;
+    public $selected_author_id;
+    public $blocked = 0;
 
     protected $listeners = [
         'resetForms'
     ];
 
     public function mount(){
+        $this->resetPage();
+    }
+
+    public function updatingSearch(){
         $this->resetPage();
     }
 

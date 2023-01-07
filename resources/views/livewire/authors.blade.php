@@ -32,16 +32,15 @@
         <div class="col-md-6 col-lg-3">
             <div class="card">
                 <div class="card-body p-4 text-center">
-                <span class="avatar avatar-xl mb-3 avatar-rounded" style="background-image: url({{ $author->picture }})"></span>
-                <h3 class="m-0 mb-1"><a href="#">{{ $author->name }}</a></h3>
-                <div class="text-muted">{{ $author->email }}</div>
-                <div class="mt-3">
-                    <span class="badge bg-purple-lt">{{ $author->authorType->name }}</span>
-                </div>
+                    <span class="avatar avatar-xl mb-3 avatar-rounded" style="background-image: url({{ $author->picture }})"></span>
+                    <h3 class="m-0 mb-1"><a href="#">{{ $author->name }}</a></h3>
+                    <div class="text-muted">{{ $author->email }}</div>
+                    <div class="mt-3">
+                        <span class="badge bg-purple-lt">{{ $author->authorType->name }}</span>
+                    </div>
                 </div>
                 <div class="d-flex">
-                <a href="#" class="card-btn">Edit</a>
-                <a href="#" class="card-btn">Delete</a>
+                    <a href="#" class="card-btn">Delete</a>
                 </div>
             </div>
         </div>
@@ -119,3 +118,4 @@
         </div>
     </div>
 </div>
+
