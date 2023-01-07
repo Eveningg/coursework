@@ -51,5 +51,12 @@ class AuthorController extends Controller
             'post_category'=>'required|exists:sub_categories,id',
             'featured_image'=>'required|mimes:jpeg,jpg,png|max:1024',
         ]);
+
+        if($request->hasFile('featured_image')){
+            $path = "images/post_images";
+            
+        }
     }
+
+
 }
