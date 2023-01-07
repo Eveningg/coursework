@@ -57,6 +57,8 @@
 
 
 @endsection
+
+
 @push('scripts')
 <script src="/ckeditor/ckeditor.js"></script>
 <script>
