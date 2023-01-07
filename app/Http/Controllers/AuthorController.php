@@ -53,10 +53,43 @@ class AuthorController extends Controller
         ]);
 
         if($request->hasFile('featured_image')){
-            $path = "images/post_images";
-            
+            $path = "images/post_images/";
+            $file = $request->file('featured_image');
+            $filename = $file->getClientOriginalName();
+            $new_filename = time().'_'.$filename;
+
+            $upload = Storage::disk('public')->put($path.$new_filename, (string) file_get_contents($file));
+
+            $post_thumbnails_path = $path.'thumbnails';
+            if( !Storage::disk('public')->exists($post_thumbnails_path) ){
+                Storage::disk('public')->makeDirectory($post_thumbnails_path, 0755, true, true);
+            }
+
+            Image::make( storage_path('app/public/'.$path.$new_filename) )
+                  ->fit(200, 200)
+                  ->save( storage_path('app/public/'.$path.'thumbnails/'.'thumb_'.$new_filename) );
+            Image::make( storage_path('app/public/'.$path.$new_filename) )
+                  ->fit(500, 350)
+                  ->save( storage_path('app/public/'.$path.'thumbnails/'.'resized_'.$new_filename) );
+                  
+            if( $upload ){
+                 $post = new Post();
+                 $post->author_id = auth()->id();
+                 $post->category_id = $request->post_category;
+                 $post->post_title = $request->post_title;
+                //  $post->post_slug = Str::slug($request->post_title);
+                 $post->post_content = $request->post_content;
+                 $post->featured_image = $new_filename;
+                 $saved = $post->save();
+
+                 if($saved){
+                    return response()->json(['code'=>1, 'msg'=>'New post has been successfully created.']);
+                 }else{
+                    return response()->json(['code'=>3, 'msg'=>'Something went wrong ins saving post data.']);
+                 }
+            }else{
+                return response()->json(['code'=>3,'msg'=>'Something went wrong for uploading featured image.']);
+            }
         }
     }
-
-
 }
