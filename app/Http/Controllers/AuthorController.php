@@ -43,4 +43,13 @@ class AuthorController extends Controller
             return response()->json(['status'=>0, 'Something Went Wrong!']);
         }
     }
+
+    public function createPost(Request $request){
+        $request->validate([
+            'post_title'=>'required|unique:posts,post_title',
+            'post_content'=>'required',
+            'post_category'=>'required|exists:sub_categories,id',
+            'featured_image'=>'required|mimes:jpeg,jpg,png|max:1024',
+        ]);
+    }
 }
