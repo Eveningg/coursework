@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Cviebrock\EloquentsSluggable\Sluggable;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class Post extends Model
 {
