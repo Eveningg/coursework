@@ -59,16 +59,57 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body"> </div>
-                <form action="" method="post">
+                <form wire:submit.prevent='addAuthor()' method="post">
                     <div class="mb-3">
-                        <label class="form-label">Text</label>
-                        <input type="text" class="form-control" name="example-text-input" placeholder="Input a Placeholder">
+                        <label class="form-label">Name</label>
+                        <input type="text" class="form-control" name="example-text-input" placeholder="Enter Author Name" wire:model='name'>
+                        <span class="text-danger">@error('name') {{ $message }} @enderror</span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input type="text" class="form-control" name="example-text-input" placeholder="Enter Author Email" wire:model='email'>
+                        <span class="text-danger">@error('email') {{ $message }} @enderror</span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Username</label>
+                        <input type="text" class="form-control" name="example-text-input" placeholder="Enter Author Username" wire:model='username'>
+                        <span class="text-danger">@error('username') {{ $message }} @enderror</span>
+                    </div>
+
+                    <div class="form-group mb-3 ">
+                        <label class="form-label">Author Type</label>
+                        <div>
+                            <select class="form-select" wire:model='author_type'>
+                                <option value="">-- No Selected --</option>
+                                @foreach(\App\Models\Type::all() as $type)
+                                    <option value="{{ $type->id }}">{{ $type->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="form-label">Is Direct Publisher?</div>
+                        <div>
+                            <label class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="direct_publisher" value="0">
+                                <span class="form-check-label">No</span>
+                            </label>
+                            <label class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="direct_publisher" value="0">
+                                <span class="form-check-label">Yes</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-footer">
+                        <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
                     </div>
                 </form>
-            <div class="modal-footer">
-                <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Save Changes</button>
-            </div>
+
         </div>
     </div>
 </div>
