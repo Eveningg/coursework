@@ -10,7 +10,7 @@ class Post extends Model
 {
     use HasFactory;
     use Sluggable;
-    
+
     protected $fillable = [
         'author_id',
         'category_id',
@@ -19,4 +19,13 @@ class Post extends Model
         'post_content',
         'featured_image',
     ];
+
+    public function sluggable(): array
+    {
+        return [
+            'post_slug' => [
+                'source' => 'post_title'
+            ]
+        ];
+    }
 }
