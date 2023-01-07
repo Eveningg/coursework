@@ -19,5 +19,8 @@ Route::prefix('author')->name('author.')->group(function(){
         Route::view('/settings','back.pages.settings')->name('settings');
         Route::view('/authors','back.pages.authors')->name('authors');
         Route::view('/categories','back.pages.categories')->name('categories');
+        Route::prefix('posts')->name('posts.')->group(function(){
+            Route::view('/add-post','back.pages.add-post')->name('add-post');
+        });
     });
 }); 
