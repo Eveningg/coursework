@@ -19,6 +19,27 @@
     window.addEventListener('showEditAuthorModal', function(event){
         $('#edit_author_modal').modal('show');
     });
+
+    window.addEventListener('deleteAuthor', function(event){
+        swal.fire({
+            title:event.detail.title,
+            imageWidth:48,
+            imageHeight:48,
+            html:event.detail.html,
+            showCloseButton:true,
+            showCancelButton:true,
+            cancelButtonText:'Cancel',
+            confirmButtonText:'Yes, delete...',
+            cancelButtonColor:'#d33',
+            confirmButtonColor:'#3085d6',
+            width:300,
+            allowOutsideClick:false
+        }).then(function(result){
+            if(result.value){
+                Livewire.emit('deleteAuthorAction', event.detail.id);
+            }
+        });
+    });
     </scripts>
 @endpush
         

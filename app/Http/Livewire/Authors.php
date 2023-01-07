@@ -20,7 +20,8 @@ class Authors extends Component
     public $blocked = 0;
 
     protected $listeners = [
-        'resetForms'
+        'resetForms',
+        'deleteAuthorAction'
     ];
 
     public function mount(){
@@ -82,6 +83,18 @@ class Authors extends Component
         }else{
             $this->showToastr('You Are Offline. Check Connection - Submit Form Again.', 'error');
         }
+    }
+
+    public function deleteAuthor($author){
+        $this->dispatchBrowserEvent('deleteAuthor',[
+            'title'=>"Are You Sure?",
+            'html'=>"You want to delete this Author: <br><b>".$author['name'].'</b>',
+            'id'=>$author['id'],
+        ]);
+    }
+
+    public function deleteAuthorAction($id){
+        dd('yes!');
     }
 
     public function showToastr($message, $type){
