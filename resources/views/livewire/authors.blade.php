@@ -88,20 +88,22 @@
                                 @endforeach
                             </select>
                         </div>
+                        <span class="text-danger">@error('author_type') {{ $message }} @enderror</span>
                     </div>
 
                     <div class="mb-3">
                         <div class="form-label">Is Direct Publisher?</div>
                         <div>
                             <label class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="direct_publisher" value="0">
+                                <input class="form-check-input" type="radio" name="direct_publisher" value="0" wire:model='direct_publisher'>
                                 <span class="form-check-label">No</span>
                             </label>
                             <label class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="direct_publisher" value="0">
+                                <input class="form-check-input" type="radio" name="direct_publisher" value="0" wire:model='direct_publisher'>
                                 <span class="form-check-label">Yes</span>
                             </label>
                         </div>
+                        <span class="text-danger">@error('direct_publisher') {{ $message }} @enderror</span>
                     </div>
                     
                     <div class="modal-footer">
