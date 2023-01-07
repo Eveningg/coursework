@@ -7,10 +7,13 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Nette\Utils\Random;
 use Illuminate\Support\Facades\Mail;
+use Livewire\WithPagination;
 
 class Authors extends Component
 
 {
+    use WithPagination;
+
     public $name, $email, $username, $author_type, $direct_publisher;
 
     protected $listeners = [
@@ -64,7 +67,7 @@ class Authors extends Component
             $this->showToastr('New Author Created.', 'success');
             $this->name = $this->email = $this->username = $this->author_type = $this->direct_publisher = null;
             $this->dispatchBrowserEvent('hide_add_author_modal');
-            
+
         }else{
             $this->showToastr('You Are Offline. Check Connection - Submit Form Again.', 'error');
         }
@@ -87,7 +90,7 @@ class Authors extends Component
     public function render()
     {
         return view('livewire.authors',[
-            'authors'=>User::where('id','!=',auth()->id())->get(),
+            'authors'=>User::where('id','!=',auth()->id())->paginate(4),
         ]);
     }
 }
