@@ -10,6 +10,7 @@ use App\Models\Settings;
 use App\Models\Post;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class AuthorController extends Controller
 {
@@ -65,9 +66,12 @@ class AuthorController extends Controller
                 Storage::disk('public')->makeDirectory($post_thumbnails_path, 0755, true, true);
             }
 
+            //Creates a Square Image - Extension of the Image Intervention Plugin
             Image::make( storage_path('app/public/'.$path.$new_filename) )
                   ->fit(200, 200)
                   ->save( storage_path('app/public/'.$path.'thumbnails/'.'thumb_'.$new_filename) );
+
+            //Creates a Resized Image - Extension of the Image Intervention Plugin
             Image::make( storage_path('app/public/'.$path.$new_filename) )
                   ->fit(500, 350)
                   ->save( storage_path('app/public/'.$path.'thumbnails/'.'resized_'.$new_filename) );
