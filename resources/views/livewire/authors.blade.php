@@ -10,7 +10,7 @@
             <!-- Page Title Actions -->
             <div class="col-auto ms-auto d-print-none">
                 <div class="d-flex">
-                    <input type="search" class="form-control d-inline-block w-9 me-3" placeholder="Search user...">
+                    <input type="search" class="form-control d-inline-block w-9 me-3" placeholder="Search user..." wire:model='search'>
                     <a href="#" class="btn btn-primary" data-bs-target='#add_author_modal' data-bs-toggle='modal'>
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                         <line x1="12" y1="5" x2="12" y2='19'></line>
