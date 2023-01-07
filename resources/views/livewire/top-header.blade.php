@@ -80,7 +80,7 @@
                     </span>
                   </a>
                   <div class="dropdown-menu">
-                    <a class="dropdown-item" href="./activity.html" >
+                    <a class="dropdown-item" href="{{ route('author.posts.add-post') }}" >
                       Add New
                     </a>
                     <a class="dropdown-item" href="./gallery.html" >
