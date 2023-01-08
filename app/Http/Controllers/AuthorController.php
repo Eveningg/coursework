@@ -88,7 +88,7 @@ class AuthorController extends Controller
                  if($saved){
                     return response()->json(['code'=>1, 'msg'=>'New post has been successfully created.']);
                  }else{
-                    return response()->json(['code'=>3, 'msg'=>'Something went wrong ins saving post data.']);
+                    return response()->json(['code'=>3, 'msg'=>'Something went wrong in saving post data.']);
                  }
             }else{
                 return response()->json(['code'=>3,'msg'=>'Something went wrong for uploading featured image.']);
@@ -106,6 +106,92 @@ class AuthorController extends Controller
             'pageTitle'=>'Edit Post',
         ];
         return view('back.pages.edit_post',$data);
+        }
+    }
+
+    public function updatePost(Request $request){
+        if( $request->hasFile('featured_image') ){
+            $request->validate([
+                'post_title'=>'required|unique:posts,post_title,'.$request->post_id,
+                'post_content'=>'required',
+                'post_category'=>'required|exists:sub_categories,id',
+                'featured_image'=>'mimes:jpeg,jpg,png|max:1024',
+            ]);
+
+            $path = "images/post_images/";
+            $file = $request->file('featured_image');
+            $filename = $file->getClientOriginalName();
+            $new_filename = time().'_'.$filename;
+            
+            $upload = Storage::disk('public')->put($path.$new_filename, (string) file_get_contents($file));
+
+            $post_thumbnails_path = $path.'thumbnails';
+            if( !Storage::disk('public')->exists($post_thumbnails_path) ){
+                Storage::disk('public')->makeDirectory($post_thumbnails_path, 0755, true, true);
+            }
+
+            Image::make( storage_path('app/public/'.$path.$new_filename) )
+                ->fit(200,200)
+                ->save(storage_path('app/public/'.$path.'thumbnail/'.'thumb_'.$new_filename) );
+
+            Image::make( storage_path('app/public/'.$path.$new_filename) )
+                ->fit(500,350)
+                ->save( storage_path('app/public/'.$path.'thumbnails/'.'resized_'.$new_filename) );
+        
+        //deletes old post featured image from directory. 
+        if( $upload ){
+            $old_post_image = Post::find($request->post_id)->featured_image;
+
+            if( $old_post_image != null && Storage::disk('public')->exists($path.$old_post_image) ){
+                Storage::disk('public')->delete($path.$old_post_image);
+
+                if( Storage::disk('public')->exists($path.'thumbnails/resized_'.$old_post_image) ){
+                    Storage::disk('public')->delete($path.'thumbnails/resized_'.$old_post_image);
+                }
+
+                if( Storage::disk('public')->exists($path.'thumbnails/thumb_'.$old_post_image) ){
+                    Storage::disk('public')->delete($path.'thumbnails/thumb_'.$old_post_image);
+                }
+            }
+
+            //replacing the old data with new data in our database.
+            $post = Post::find($request->post_id);
+            $post->category_id = $request->post_category;
+            $post->post_title = $request->post_title;
+            $post->post_slug = null;
+            $post->post_content = $request->post_content;
+            $post->featured_image = $new_filename;
+            $saved = $post->save();
+
+            if( $saved ){
+                return response()->json(['code'=>1,'msg'=>'Post Has Successfully Updated!']);
+            }else{
+                return response()->json(['code'=>3,'msg'=>'Something went wrong for updating post.']);
+            }
+
+        }else{
+            return response()->json(['code'=>3,'msg'=>'Error in uploading new featured image.']);
+        }
+
+        }else{
+            $request->validate([
+                'post_title'=>'required|unique:posts,post_title,'.$request->post_id,
+                'post_content'=>'required',
+                'post_category'=>'required|exists:sub_categories,id'
+            ]);
+
+            $post = Post::find($request->post_id);
+            $post->category_id = $request->post_category;
+            $post->post_slug = null;
+            $post->post_content = $request->post_content;
+            $post->post_title = $request->post_title;
+            $saved = $post->save();
+
+            if($saved){
+                return response()->json(['code'=>1, 'msg'=>'Post has been successfully updated!']);
+            }else{
+                return response()->json(['code'=>3, 'msg'=>'Something Went Wrong While Updating Post!']);
+            }
         }
     }
 }
