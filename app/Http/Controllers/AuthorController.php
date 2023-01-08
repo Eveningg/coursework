@@ -109,7 +109,7 @@ class AuthorController extends Controller
         }
     }
 
-     public function updatePost(Request $request){
+    public function updatePost(Request $request){
          if( $request->hasFile('featured_image') ){
              $request->validate([
                  'post_title'=>'required|unique:posts,post_title,'.$request->post_id,

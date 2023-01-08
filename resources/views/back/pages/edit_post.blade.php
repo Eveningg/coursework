@@ -46,9 +46,9 @@
                     <span class="text-danger error-text featured_image_error"></span>
                   </div>
                   <div class="image_holder mb-2" style="max-width: 250px">
-                        <img src="" alt="" class="img-thumbnail" id="image-previewer" data-ijabo-default-img='/storage/images/post_images/thumbnails/resized_{{$post->featured_image}}'>
+                    <img src="" alt="" class="img-thumbnail" id="image-previewer" data-ijabo-default-img='/storage/images/post_images/thumbnails/resized_{{$post->featured_image}}'>
                   </div>
-                  <button type="submit" class="btn btn-primary">Update Post</button>
+                  <input type="submit" class="btn btn-primary" name="" value="Update Post">
             </div>
            </div>
         </div>
