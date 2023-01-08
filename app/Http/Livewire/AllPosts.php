@@ -39,6 +39,21 @@ class AllPosts extends Component
     }
     
 
+    //Testing display if action can be deleted.
+    public function deletePostAction($id){
+        dd('Yes, Delete');
+    }
+
+
+     //Provides users with a 'Are you sure?' option after pressing delete button
+     public function deletePost($id){
+        $this->dispatchBrowserEvent('deletePost',[
+            'title'=>'Are You Sure?',
+            'html'=>'You want to delete this post.',
+            'id'=>$id
+        ]);
+    }
+
     //When a user is an admin, they see ALL POSTS. A standard user will only see his/her posts.
      public function render()
      {
@@ -48,18 +63,6 @@ class AllPosts extends Component
          ]);
     }
 
-    public function deletePostAction($id){
-        dd('Yes, Delete');
-    }
-
-    //Provides users with a 'Are you sure?' option after pressing delete button
-    public function deletePost($id){
-        $this->dispatchBrowserEvent('deletePost',[
-            'title'=>"Are You Sure?",
-            'html'=>"You want to delete this post...",
-            'id'=>$id
-        ]);
-    }
     
 
     //returning the values of posts that fit criteria of the search terms, allowing users and admins to search for posts.
