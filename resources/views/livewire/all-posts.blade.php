@@ -5,13 +5,22 @@
             <label for="" class="form-label">Search</label>
             <input type="text" class="form-control" placeholder="Keyword...">
         </div>
-        <div class="col-md2 mb-3">
+        <div class="col-md-2 mb-3">
             <label for="" class="form-label">Category</label>
             <select name="" class="form-select">
                 <option value="">-- No Selected --</option>
                 <option value="">Categ 1</option>
                 <option value="">Categ 2</option>
                 <option value="">Categ 3</option>
+            </select>
+        </div>
+        <div class="col-md-3 mb-3">
+            <label for="" class="form-label">Authorr</label>
+            <select name="" class="form-select">
+                <option value="">-- No Selected --</option>
+                <option value="">Author 1</option>
+                <option value="">Author 2</option>
+                <option value="">Author 3</option>
             </select>
         </div>
     </div>
