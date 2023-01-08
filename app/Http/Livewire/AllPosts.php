@@ -5,12 +5,18 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Post;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\Storage;
 
 class AllPosts extends Component
 {
     //Assigning num of posts to show per page, search keyword, author keyword, category keyword search, orderBy to desc
     use WithPagination;
     public $perPage = 4;
+
+    //Listener that waits for user to activate the deletePostAction to delete a post.
+    protected $listeners = [
+        'deletePostAction'
+    ];
 
     //Page resets to default when refreshed.
     public function mount(){
@@ -42,6 +48,18 @@ class AllPosts extends Component
          ]);
     }
 
+    public function deletePostAction($id){
+        dd('Yes, Delete');
+    }
+
+    //Provides users with a 'Are you sure?' option after pressing delete button
+    public function deletePost($id){
+        $this->dispatchBrowserEvent('deletePost',[
+            'title'=>"Are You Sure?",
+            'html'=>"You want to delete this post...",
+            'id'=>$id
+        ]);
+    }
     
 
     //returning the values of posts that fit criteria of the search terms, allowing users and admins to search for posts.
