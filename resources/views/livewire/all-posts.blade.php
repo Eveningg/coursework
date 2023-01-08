@@ -1,4 +1,21 @@
 <div>
+
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <label for="" class="form-label">Search</label>
+            <input type="text" class="form-control" placeholder="Keyword...">
+        </div>
+        <div class="col-md2 mb-3">
+            <label for="" class="form-label">Category</label>
+            <select name="" class="form-select">
+                <option value="">-- No Selected --</option>
+                <option value="">Categ 1</option>
+                <option value="">Categ 2</option>
+                <option value="">Categ 3</option>
+            </select>
+        </div>
+    </div>
+
     <div class="row row-cards">
 
         @forelse($posts as $post)
