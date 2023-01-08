@@ -35,32 +35,45 @@ class AllPosts extends Component
     public function updatingAuthor(){
         $this->resetPage();
     }
+    
 
-    //returning the values of posts that fit criteria of the search terms, allowing users and admins to search for posts.
+    //When a user is an admin, they see ALL POSTS. A standard user will only see his/her posts.
     public function render()
     {
         return view('livewire.all-posts',[
-            'posts'=> auth()->user()->type == 1 ?
-                        Post::search(trim($this->search))
-                            ->when($this->category, function($query){
-                                $query->where('category_id', $this->$category);
-                            })
-                            ->when($this->author, function($query){
-                                $query->where('author_id', $this->$author);
-                            })
-                            ->when($this->orderBy, function($query){
-                                $query->orderBy('id', $this->orderBy);
-                            })
-                            ->paginate($this->perPage) : 
-                        Post::search(trim($this->search))
-                            ->when($this->category, function($query){
-                                $query->where('category_id',$this->category);
-                            })
-                            ->where('author_id', auth()->id())
-                            ->when($this->orderBy, function($query){
-                                $query->orderBy('id', $this->orderBy);
-                            })
-                            ->paginate($this->perPage)
+            'posts'=> auth()->user()->type == 1 ? 
+                    Post::paginate($this->perPage) : 
+                    Post::where('author_id', auth()->id())->pagination($this->perPage)
         ]);
+        
     }
+
+
+    //returning the values of posts that fit criteria of the search terms, allowing users and admins to search for posts.
+    // public function render()
+    // {
+    //     return view('livewire.all-posts',[
+    //         'posts'=> auth()->user()->type == 1 ?
+    //                     Post::search(trim($this->search))
+    //                         ->when($this->category, function($query){
+    //                             $query->where('category_id', $this->$category);
+    //                         })
+    //                         ->when($this->author, function($query){
+    //                             $query->where('author_id', $this->$author);
+    //                         })
+    //                         ->when($this->orderBy, function($query){
+    //                             $query->orderBy('id', $this->orderBy);
+    //                         })
+    //                         ->paginate($this->perPage) : 
+    //                     Post::search(trim($this->search))
+    //                         ->when($this->category, function($query){
+    //                             $query->where('category_id',$this->category);
+    //                         })
+    //                         ->where('author_id', auth()->id())
+    //                         ->when($this->orderBy, function($query){
+    //                             $query->orderBy('id', $this->orderBy);
+    //                         })
+    //                         ->paginate($this->perPage)
+    //     ]);
+    // }
 }

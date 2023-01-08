@@ -69,7 +69,7 @@ class User extends Authenticatable
     // }
 
     //Authors can 'have many' posts assigned to them.
-    //public function posts(){
-    //    return $this->hasMany(Post::class,'author_id','id');
-    //}
+    public function posts(){
+        return $this->hasMany(Post::class,'author_id','id');
+    }
 }
