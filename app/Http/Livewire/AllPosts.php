@@ -8,6 +8,7 @@ use Livewire\WithPagination;
 
 class AllPosts extends Component
 {
+    //Assigning num of posts to show per page, search keyword, author keyword, category keyword search, orderBy to desc
     use WithPagination;
     public $perPage = 4;
     public $search = null;
@@ -15,22 +16,27 @@ class AllPosts extends Component
     public $category = null;
     public $orderBy = 'desc';
 
+    //Page resets to default when refreshed.
     public function mount(){
         $this->resetPage();
     }
 
+    //Page resets to default when refreshed while updating for a search keyword.
     public function updatingSearch(){
         $this->resetPage();
     }
 
+    //Page resets to default when refreshed while updating for a search category.
     public function updatingCategory(){
         $this->resetPage();
     }
 
+    //Page resets to default when refreshed while updating for a search author.
     public function updatingAuthor(){
         $this->resetPage();
     }
 
+    //returning the values of posts that fit criteria of the search terms, allowing users and admins to search for posts.
     public function render()
     {
         return view('livewire.all-posts',[

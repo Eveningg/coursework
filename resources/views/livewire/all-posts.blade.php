@@ -1,6 +1,9 @@
 <div>
 
+    <!-- row dedeciated to my search functions for a post. -->
     <div class="row">
+
+        <!-- searchs for keywords of a post -->
         <div class="col-md-6 mb-3">
             <label for="" class="form-label">Search</label>
             <input type="text" class="form-control" placeholder="Keyword..." wire:model='search'>
@@ -10,18 +13,19 @@
             <select class="form-select" wire:model='category'>
                 <option value="">-- No Selected --</option>
                 @foreach(\App\Models\SubCategory::whereHas('posts')->get() as $category)
-                    <option value="{{ $category->id}}">{{ $category->subcategory_name }}</option>
+                    <option value="{{ $category->id }}">{{ $category->subcategory_name }}</option>
                 @endforeach
             </select>
         </div>
-        <!-- only admins can access this-->
+
+        <!-- only admins can access a drop-down menu to sort by user (type==1 means admin account)-->
         @if(auth()->user()->type == 1)
         <div class="col-md-2 mb-3">
             <label for="" class="form-label">Author</label>
             <select class="form-select" wire:model='author'>
                 <option value="">-- No Selected --</option>
                 @foreach(\App\Models\User::whereHas('posts')->get() as $author)
-                    <option value="{{ $author -> id}}">{{ $author->name }}</option>
+                <option value="{{ $author -> id}}">{{ $author->name }}</option>
                 @endforeach
             </select>
         </div>
@@ -29,13 +33,12 @@
 
         <!-- creating a drop-down menu to sort posts by either ascending or descending order-->
         <div class="col-md-2 mb-3">
-            <label for="" class="form-label">OrderBy</label>
+            <label for="" class="form-label">orderBy</label>
             <select class="form-select" wire:model='orderBy'>
-                <option value="asc">Ascending</option>
-                <option value="desc">Descending</option>
+                <option value="asc">ASC</option>
+                <option value="desc">DESC</option>
             </select>
         </div>
-
     </div>
 
     <div class="row row-cards">
