@@ -10,7 +10,7 @@ class AllPosts extends Component
 {
     //Assigning num of posts to show per page, search keyword, author keyword, category keyword search, orderBy to desc
     use WithPagination;
-    public $perPage = 4;
+    public $perPage = 1;
     public $search = null;
     public $author = null;
     public $category = null;
