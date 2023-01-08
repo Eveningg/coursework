@@ -29,9 +29,8 @@ class Post extends Model
         ];
     }
 
-    
     public function scopeSearch($query,$term){
-        $term = '%term%';
+        $term = "%term%";
         $query->where(function($query) use ($term){
             $query->where('post_title','like',$term);
         });
