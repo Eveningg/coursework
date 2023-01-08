@@ -18,4 +18,8 @@
             <span class="text-danger">No Posts found</span>
         @endforelse
     </div>
+
+    <div class="d-block mt-2">
+        {{$posts->links('livewire::bootstrap') }}
+    </div>
 </div>
