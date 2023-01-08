@@ -34,7 +34,7 @@ class AllPosts extends Component
     public function render()
     {
         return view('livewire.all-posts',[
-            'posts'=> auth()->user()->type == 1 ? Post::paginate($this -> perPage) : Post::where('author_id', auth()->id())->paginate($this->perPage)
+            'posts'=> auth()->user()->type == 1 ? Post::search(trim($this->search))->paginate($this -> perPage) : Post::search(trim($this->search))->where('author_id', auth()->id())->paginate($this->perPage)
         ]);
     }
 }
