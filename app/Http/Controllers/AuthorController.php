@@ -95,4 +95,17 @@ class AuthorController extends Controller
             }
         }
     }
+
+    public function editPost(Request $request){
+        if(!request()->post_id){
+            return abort(404);
+        }else{
+        $post = Post::find(request()->post_id);
+        $data = [
+            'post'=>$post,
+            'pageTitle'=>'Edit Post',
+        ];
+        return view('back.pages.edit_post',$data);
+        }
+    }
 }
