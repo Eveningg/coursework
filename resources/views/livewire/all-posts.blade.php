@@ -1,9 +1,9 @@
 <div>
 
-    <!-- row dedeciated to my search functions for a post. -->
+    <!-- row dedeciated to my search functions for a post. 
     <div class="row">
 
-        <!-- searchs for keywords of a post -->
+         searchs for keywords of a post 
         <div class="col-md-6 mb-3">
             <label for="" class="form-label">Search</label>
             <input type="text" class="form-control" placeholder="Keyword..." wire:model='search'>
@@ -17,8 +17,9 @@
                 @endforeach
             </select>
         </div>
+        -->
 
-        <!-- only admins can access a drop-down menu to sort by user (type==1 means admin account)-->
+        <!-- only admins can access a drop-down menu to sort by user (type==1 means admin account)
         @if(auth()->user()->type == 1)
         <div class="col-md-2 mb-3">
             <label for="" class="form-label">Author</label>
@@ -30,8 +31,9 @@
             </select>
         </div>
         @endif
+        -->
 
-        <!-- creating a drop-down menu to sort posts by either ascending or descending order-->
+        <!-- creating a drop-down menu to sort posts by either ascending or descending order
         <div class="col-md-2 mb-3">
             <label for="" class="form-label">orderBy</label>
             <select class="form-select" wire:model='orderBy'>
@@ -40,6 +42,7 @@
             </select>
         </div>
     </div>
+    -->
 
     <div class="row row-cards">
 
