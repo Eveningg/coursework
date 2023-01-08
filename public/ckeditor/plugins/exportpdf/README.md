@@ -59,11 +59,6 @@ Refer to [Export to PDF installation documentation](https://ckeditor.com/docs/ck
 
 If you have a commercial license for **Export to PDF** plugin, [exportPdf_tokenUrl](https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-exportPdf_tokenUrl) configuration option should be set to remove watermark from generated documents:
 
-```js
-CKEDITOR.replace( 'editor', {
-	exportPdf_tokenUrl: 'https://example.com/cs-token-endpoint'
-} );
-```
 
 This value is unique for each customer and can be found in the [CKEditor Ecosystem dashboard](https://dashboard.ckeditor.com).
 
