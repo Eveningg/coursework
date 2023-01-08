@@ -41,8 +41,26 @@ class AllPosts extends Component
     {
         return view('livewire.all-posts',[
             'posts'=> auth()->user()->type == 1 ?
-                        Post::search(trim($this->search))->paginate($this -> perPage) : 
-                        Post::search(trim($this->search))->where('author_id', auth()->id())->paginate($this->perPage)
+                        Post::search(trim($this->search))
+                            ->when($this->category, function($query){
+                                $query->where('category_id', $this->$category);
+                            })
+                            ->when($this->author, function($query){
+                                $query->where('author_id', $this->$author);
+                            })
+                            ->when($this->orderBy, function($query){
+                                $query->orderBy('id', $this->$orderBy);
+                            })
+                            ->paginate($this->perPage) : 
+                        Post::search(trim($this->search))
+                            ->when($this,category, function($query){
+                                $query->where('category_id',$this->category);
+                            })
+                            ->where('author_id', auth()->id())
+                            ->when($this->orderBy, function($query){
+                                $query->orderBy('id', $this->orderBy);
+                            })
+                            ->paginate($this->perPage)
         ]);
     }
 }
