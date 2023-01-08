@@ -10,8 +10,24 @@ class AllPosts extends Component
 {
     use WithPagination;
     public $perPage = 4;
+    public $search = null;
+    public $author = null;
+    public $category = null;
+    public $orderBy = 'desc';
 
     public function mount(){
+        $this->resetPage();
+    }
+
+    public function updatingSearch(){
+        $this->resetPage();
+    }
+
+    public function updatingCategory(){
+        $this->resetPage();
+    }
+
+    public function updatingAuthor(){
         $this->resetPage();
     }
 

@@ -18,22 +18,24 @@
         @if(auth()->user()->type == 1)
         <div class="col-md-2 mb-3">
             <label for="" class="form-label">Author</label>
-            <select name="" class="form-select">
+            <select class="form-select" wire:model='author'>
                 <option value="">-- No Selected --</option>
-                <option value="">Author 1</option>
-                <option value="">Author 2</option>
-                <option value="">Author 3</option>
+                @foreach(\App\Models\User::whereHas('posts')->get() as $author)
+                    <option value="{{ $author -> id}}">{{ $author->name }}</option>
+                @endforeach
             </select>
         </div>
         @endif
 
+        <!-- creating a drop-down menu to sort posts by either ascending or descending order-->
         <div class="col-md-2 mb-3">
-            <label for="" class="form-label">Sort By</label>
-            <select name="" class="form-select">
+            <label for="" class="form-label">OrderBy</label>
+            <select class="form-select" wire:model='orderBy'>
                 <option value="asc">Ascending</option>
                 <option value="desc">Descending</option>
             </select>
         </div>
+
     </div>
 
     <div class="row row-cards">
