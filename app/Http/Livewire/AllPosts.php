@@ -53,7 +53,7 @@ class AllPosts extends Component
                             })
                             ->paginate($this->perPage) : 
                         Post::search(trim($this->search))
-                            ->when($this,category, function($query){
+                            ->when($this->category, function($query){
                                 $query->where('category_id',$this->category);
                             })
                             ->where('author_id', auth()->id())
