@@ -24,9 +24,8 @@
                     <span class="text-danger error-text post_title_error"></span>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Post Content</label>
+                    <label class="form-label">Post content</label>
                     <textarea class="ckeditor form-control" name="post_content" rows="6" placeholder="Content.." id="post_content">{!! $post->post_content !!}</textarea>
-
                     <span class="text-danger error-text post_content_error"></span>
                   </div>
             </div>
