@@ -3,24 +3,35 @@
     <div class="row">
         <div class="col-md-6 mb-3">
             <label for="" class="form-label">Search</label>
-            <input type="text" class="form-control" placeholder="Keyword...">
+            <input type="text" class="form-control" placeholder="Keyword..." wire:model='search'>
         </div>
         <div class="col-md-2 mb-3">
             <label for="" class="form-label">Category</label>
-            <select name="" class="form-select">
+            <select class="form-select" wire:model='category'>
                 <option value="">-- No Selected --</option>
-                <option value="">Categ 1</option>
-                <option value="">Categ 2</option>
-                <option value="">Categ 3</option>
+                @foreach(\App\Models\SubCategory::whereHas('posts')->get() as $category)
+                    <option value="{{ $category->id}}">{{ $category->subcategory_name }}</option>
+                @endforeach
             </select>
         </div>
-        <div class="col-md-3 mb-3">
-            <label for="" class="form-label">Authorr</label>
+        <!-- only admins can access this-->
+        @if(auth()->user()->type == 1)
+        <div class="col-md-2 mb-3">
+            <label for="" class="form-label">Author</label>
             <select name="" class="form-select">
                 <option value="">-- No Selected --</option>
                 <option value="">Author 1</option>
                 <option value="">Author 2</option>
                 <option value="">Author 3</option>
+            </select>
+        </div>
+        @endif
+
+        <div class="col-md-2 mb-3">
+            <label for="" class="form-label">Sort By</label>
+            <select name="" class="form-select">
+                <option value="asc">Ascending</option>
+                <option value="desc">Descending</option>
             </select>
         </div>
     </div>
