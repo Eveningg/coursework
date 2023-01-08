@@ -32,7 +32,7 @@
         @include('back.layouts.inc.footer')
       </div>
     </div>
-
+   
     <!-- Libs JS -->
     <script src="/back/dist/libs/jquery/jquery-3.6.0.min.js"></script>
     <script src="/back/dist/libs/ijabo/ijabo.min.js"></script>
