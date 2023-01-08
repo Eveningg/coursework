@@ -25,7 +25,7 @@ class AuthorController extends Controller
 
     public function changeProfilePicture(Request $request){
         $user = User::find(auth('web')->id());
-        $path = 'back/dist/img/authors/';
+        $path = 'back\\dist\\img\\authors\\';
         $file = $request->file('file');
         $old_picture = $user->getAttributes()['picture'];
         $file_path = $path.$old_picture;
@@ -130,31 +130,31 @@ class AuthorController extends Controller
                 Storage::disk('public')->makeDirectory($post_thumbnails_path, 0755, true, true);
             }
 
-            Image::make( storage_path('app/public/'.$path.$new_filename) )
+            Image::make( storage_path('app\\public\\'.$path.$new_filename) )
                 ->fit(200,200)
-                ->save(storage_path('app/public/'.$path.'thumbnail/'.'thumb_'.$new_filename) );
+                ->save(storage_path('app\\public\\'.$path.'thumbnail\\'.'thumb_'.$new_filename) );
 
-            Image::make( storage_path('app/public/'.$path.$new_filename) )
+            Image::make( storage_path('app\\public\\'.$path.$new_filename) )
                 ->fit(500,350)
-                ->save( storage_path('app/public/'.$path.'thumbnails/'.'resized_'.$new_filename) );
+                ->save( storage_path('app\\public\\'.$path.'thumbnails\\'.'resized_'.$new_filename) );
         
-        //deletes old post featured image from directory. 
+        \\\\deletes old post featured image from directory. 
         if( $upload ){
             $old_post_image = Post::find($request->post_id)->featured_image;
 
             if( $old_post_image != null && Storage::disk('public')->exists($path.$old_post_image) ){
                 Storage::disk('public')->delete($path.$old_post_image);
 
-                if( Storage::disk('public')->exists($path.'thumbnails/resized_'.$old_post_image) ){
-                    Storage::disk('public')->delete($path.'thumbnails/resized_'.$old_post_image);
+                if( Storage::disk('public')->exists($path.'thumbnails\\resized_'.$old_post_image) ){
+                    Storage::disk('public')->delete($path.'thumbnails\\resized_'.$old_post_image);
                 }
 
-                if( Storage::disk('public')->exists($path.'thumbnails/thumb_'.$old_post_image) ){
-                    Storage::disk('public')->delete($path.'thumbnails/thumb_'.$old_post_image);
+                if( Storage::disk('public')->exists($path.'thumbnails\\thumb_'.$old_post_image) ){
+                    Storage::disk('public')->delete($path.'thumbnails\\thumb_'.$old_post_image);
                 }
             }
 
-            //replacing the old data with new data in our database.
+            \\\\replacing the old data with new data in our database.
             $post = Post::find($request->post_id);
             $post->category_id = $request->post_category;
             $post->post_title = $request->post_title;
