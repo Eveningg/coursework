@@ -6,8 +6,8 @@ use Livewire\Component;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Nette\Utils\Random;
-use Illuminate\Support\Facades\Mail;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\File;
 
 class Authors extends Component
 
@@ -31,11 +31,6 @@ class Authors extends Component
     public function updatingSearch(){
         $this->resetPage();
     }
-
-    public function resetForms(){
-        $this->name = $this->email = $this->username = $this->author_type = $this->direct_publisher = null;
-        $this->resetErrorBag();
-    } 
 
     public function addAuthor(){
         $this->validate([
@@ -94,7 +89,19 @@ class Authors extends Component
     }
 
     public function deleteAuthorAction($id){
-        dd('yes!');
+
+        $author = User::find($id);
+        $path = 'back/dist/img/authors/';
+        $author_picture = $author->getAttributes()['picture'];
+        $picture_full_path = $path.$author_picture;
+    
+        if($author_picture != null || File::exists(public_path($picture_full_path))){
+            File::delete(public_path($picture_full_path));
+        }
+        
+        $author->delete();
+        $this->showToastr('Author has been successfull deleted.', 'info');
+        
     }
 
     public function showToastr($message, $type){
