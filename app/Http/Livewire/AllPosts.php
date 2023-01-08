@@ -9,7 +9,7 @@ use Livewire\WithPagination;
 class AllPosts extends Component
 {
     use WithPagination;
-    public $perPage = 1;
+    public $perPage = 4;
 
     public function mount(){
         $this->resetPage();
