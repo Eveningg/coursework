@@ -33,10 +33,10 @@ class Post extends Model
     }
 
     //searches are display to a user, as long as they have similar terms in the post equal to a user search
-    public function scopeSearch($query,$term){
-        $term = "%term%";
-        $query->where(function($query) use ($term){
-            $query->where('post_title','like',$term);
-        });
-    }
+    // public function scopeSearch($query,$term){
+    //     $term = "%term%";
+    //     $query->where(function($query) use ($term){
+    //         $query->where('post_title','like',$term);
+    //     });
+    // }
 }

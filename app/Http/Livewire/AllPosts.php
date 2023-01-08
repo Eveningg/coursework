@@ -10,11 +10,7 @@ class AllPosts extends Component
 {
     //Assigning num of posts to show per page, search keyword, author keyword, category keyword search, orderBy to desc
     use WithPagination;
-    public $perPage = 1;
-    public $search = null;
-    public $author = null;
-    public $category = null;
-    public $orderBy = 'desc';
+    public $perPage = 4;
 
     //Page resets to default when refreshed.
     public function mount(){
@@ -38,16 +34,15 @@ class AllPosts extends Component
     
 
     //When a user is an admin, they see ALL POSTS. A standard user will only see his/her posts.
-    public function render()
-    {
-        return view('livewire.all-posts',[
-            'posts'=> auth()->user()->type == 1 ? 
-                    Post::paginate($this->perPage) : 
-                    Post::where('author_id', auth()->id())->pagination($this->perPage)
-        ]);
-        
+     public function render()
+     {
+         return view('livewire.all-posts',[
+             'posts'=> auth()->user()->type == 1 ? 
+                     Post::paginate($this->perPage) : Post::where('author_id', auth()->id())->paginate($this->perPage)
+         ]);
     }
 
+    
 
     //returning the values of posts that fit criteria of the search terms, allowing users and admins to search for posts.
     // public function render()
