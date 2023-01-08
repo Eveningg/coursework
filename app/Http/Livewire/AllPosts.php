@@ -49,7 +49,7 @@ class AllPosts extends Component
                                 $query->where('author_id', $this->$author);
                             })
                             ->when($this->orderBy, function($query){
-                                $query->orderBy('id', $this->$orderBy);
+                                $query->orderBy('id', $this->orderBy);
                             })
                             ->paginate($this->perPage) : 
                         Post::search(trim($this->search))
