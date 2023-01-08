@@ -8,6 +8,13 @@ use Livewire\WithPagination;
 
 class AllPosts extends Component
 {
+    use WithPagination;
+    public $perPage = 1;
+
+    public function mount(){
+        $this->resetPage();
+    }
+    
     public function render()
     {
         return view('livewire.all-posts',[
