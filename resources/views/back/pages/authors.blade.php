@@ -20,6 +20,10 @@
         $('#edit_author_modal').modal('show');
     });
 
+    // window.addEventListener('hide_edit_author_modal', function(event){
+    //     $('#edit_author_modal').modal('hide');
+    // });
+
     window.addEventListener('deleteAuthor', function(event){
         swal.fire({
             title:event.detail.title,
@@ -29,7 +33,7 @@
             showCloseButton:true,
             showCancelButton:true,
             cancelButtonText:'Cancel',
-            confirmButtonText:'Yes, delete...',
+            confirmButtonText:'Yes, delete',
             cancelButtonColor:'#d33',
             confirmButtonColor:'#3085d6',
             width:300,
@@ -40,6 +44,6 @@
             }
         });
     });
-    </scripts>
+    </script>
 @endpush
         
