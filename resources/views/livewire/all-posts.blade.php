@@ -56,6 +56,8 @@
             </div>
         </div>
     </div>
+
+    <!-- Small validation that shows No Posts if a post not fitting the criteria can be met -->
     @empty
       <span class="text-danger">No Post Found</span>
     @endforelse
