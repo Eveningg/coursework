@@ -96,7 +96,8 @@ class AuthorController extends Controller
     }
 
 
-    //Edit post, allows you to access a posts information of a user.
+    //Takes variable request, if no post_id in request, provide 404 page. 
+    //Else, find the post field with equal post_id, open edit_post.blade.php. 
     public function editPost(Request $request){
         if( !request()->post_id ){
             return abort(404);
