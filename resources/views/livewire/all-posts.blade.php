@@ -1,9 +1,7 @@
 <div>
-    <!-- I WANTED THIS TO WORK SO BAD.
-    row dedeciated to my search functions for a post.  
-    <div class="row">
 
-        searchs for keywords of a post 
+    <!-- Providing users the ability to search posts by Category. -->
+    <div class="row">
         <div class="col-md-6 mb-3">
             <label for="" class="form-label">Search</label>
             <input type="text" class="form-control" placeholder="Keyword..." wire:model='search'>
@@ -11,19 +9,20 @@
         <div class="col-md-2 mb-3">
             <label for="" class="form-label">Category</label>
             <select class="form-select" wire:model='category'>
-                <option value="">-- No Selected --</option>
-                @foreach(\App\Models\SubCategory::whereHas('posts')->get() as $category)
+                <option value="">-- No selected ---</option>
+                @foreach (\App\Models\SubCategory::whereHas('posts')->get() as $category)
                     <option value="{{ $category->id }}">{{ $category->subcategory_name }}</option>
                 @endforeach
+                
             </select>
         </div>
 
-        only admins can access a drop-down menu to sort by user (type==1 means admin account) 
-        @if(auth()->user()->type == 1)
+        <!-- Only Admins can sort by User. Allows for Admin to sort posts by specific Users. -->
+        @if (auth()->user()->type == 1)
         <div class="col-md-2 mb-3">
             <label for="" class="form-label">Author</label>
-            <select class="form-select" wire:model='author'>
-                <option value="">-- No Selected --</option>
+            <select  class="form-select" wire:model='author'>
+                <option value="">-- No selected ---</option>
                 @foreach(\App\Models\User::whereHas('posts')->get() as $author)
                 <option value="{{ $author->id }}">{{ $author->name }}</option>
                 @endforeach
@@ -31,8 +30,7 @@
         </div>
         @endif
 
-
-        creating a drop-down menu to sort posts by either ascending or descending order 
+        <!-- Providing user option to sort posts by ascending or descending -->
         <div class="col-md-2 mb-3">
             <label for="" class="form-label">orderBy</label>
             <select class="form-select" wire:model='orderBy'>
@@ -40,12 +38,11 @@
                 <option value="desc">DESC</option>
             </select>
         </div>
+
     </div>
-    -->
-
-
-    <div class="row row-cards">
-
+   
+    <!-- Sorts users posts individually, then presents them following the below specifics (only shows four posts at a times because pagination) -->
+   <div class="row row-cards">
     @forelse($posts as $post)
     <div class="col-md-6 col-lg-3">
         <div class="card">
@@ -55,16 +52,19 @@
             </div>
             <div class="d-flex">
                 <a href="{{ route('author.posts.edit-post',['post_id'=>$post->id]) }}" class="card-btn">Edit</a>
-                <a href="" wire:click.prevent='deletePost({{$post->id}})' class="card-btn">Delete</a>
+                <a href="" class="card-btn">Delete</a>
             </div>
         </div>
     </div>
     @empty
-        <span class="text-danger">No Posts Found</span>
+      <span class="text-danger">No Post Found</span>
     @endforelse
-    </div>
 
-    <div class="d-block mt-2">
-        {{$posts->links('livewire::bootstrap') }}
-    </div>
+   </div>
+
+   <!-- Bootstrap Implementation For Posts. -->
+   <div class="d-block mt-2">
+    {{ $posts->links('livewire::bootstrap') }}
+   </div>
+
 </div>
