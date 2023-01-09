@@ -62,9 +62,6 @@
 
 
 @endsection
-
-@endsection
-
 <!-- 
     Using the ckEditor script from ckEditor plugin to allow for customizing texts on posts. i.e. bold/italic/text-font
     Function #1 takes the featured image from the blog and usings the ijaboViewer plugin to make the image cropped and rectangular, essential for formatting posts later.
