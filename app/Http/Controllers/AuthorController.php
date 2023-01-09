@@ -14,10 +14,7 @@ use Intervention\Image\Facades\Image;
 
 class AuthorController extends Controller
 {
-    public function index(Request $request){
-        return view('back.pages.home');
-    }
-
+    //Log out function, redirectes user to the login page, alongside logging them out.
     public function logout(){
         Auth::guard('web')->logout();
         return redirect()->route('author.login');

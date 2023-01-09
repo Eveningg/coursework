@@ -28,10 +28,6 @@
                 <div>
                     <div class="row">
                         <div class="col-md-6"></div>
-                            <h3>Set Thread Logo</h3>
-                            <div class="mb-2" style="max-width: 200px">
-                                <img src="" alt="" class="img-thumbnail" id="logo-image-preview" data-ijabo-default-img="{{\App\Models\Setting::find(1)->blog_logo}}">
-                            </div>
                             <form action="" method="post" id="changeBlogLogoForm">
                                 @csrf
                                 <div class="mb-2">
