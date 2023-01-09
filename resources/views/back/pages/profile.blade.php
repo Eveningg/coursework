@@ -2,8 +2,6 @@
 @section('pagesTitle', isset($pageTitle) ? $pageTitle : 'Profile')
 @section('content')
     
-
-
 @livewire('author-profile-header')
 <hr>
 <div class="row">
