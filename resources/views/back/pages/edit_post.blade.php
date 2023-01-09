@@ -12,6 +12,7 @@
       </div>
     </div>
   </div>
+
   <!-- Creating a route that accesses the update-post function -->
   <form action="{{ route('author.posts.update-post',['post_id'=>Request('post_id')]) }}" method="post" id="editPostForm" enctype="multipart/form-data">
     @csrf
@@ -53,7 +54,7 @@
                   <div class="image_holder mb-2" style="max-width: 250px">
                         <img src="" alt="" class="img-thumbnail" id="image-previewer" data-ijabo-default-img='/storage/images/post_images/thumbnails/resized_{{$post->featured_image}}'>
                   </div>
-                  <button type="submit" class="btn btn-primary">Update post</button>
+                  <button type="submit" class="btn btn-primary">Update Post</button>
             </div>
            </div>
         </div>
