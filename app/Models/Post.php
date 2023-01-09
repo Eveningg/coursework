@@ -32,6 +32,7 @@ class Post extends Model
         ];
     }
 
+    //scopeSearch takes a Query, and a Term. Queries are compared to terms, returning terms equal to query.
     public function scopeSearch($query,$term){
         $term = "%$term%";
         $query->where(function($query) use ($term){
