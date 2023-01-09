@@ -18,6 +18,7 @@ class AuthorPersonalDetails extends Component
         $this->biography= $this->author->biography;
     }
 
+    //Takes new user details, validates they're valid details, and assigns them to the user as new values. Outputs Toastr message.
     public function UpdateDetails(){
         $this->validate([
             'name'=>'required|string',
