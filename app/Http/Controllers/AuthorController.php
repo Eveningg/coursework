@@ -20,6 +20,7 @@ class AuthorController extends Controller
         return redirect()->route('author.login');
     }
 
+    //User can change their profile picture, their profile picture is also uploaded to a personal directory stored within the site.
     public function changeProfilePicture(Request $request){
         $user = User::find(auth('web')->id());
         $path = 'back/dist/img/authors/';
@@ -42,6 +43,7 @@ class AuthorController extends Controller
         }
     }
 
+    //Create posts - Validation on what is/isn't allowed. Alongside implementing thumbnails and picturers
     public function createPost(Request $request){
         $request->validate([
             'post_title'=>'required|unique:posts,post_title',
@@ -93,6 +95,7 @@ class AuthorController extends Controller
         }
     }
 
+    
     public function editPost(Request $request){
         if( !request()->post_id ){
             return abort(404);
