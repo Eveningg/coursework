@@ -13,11 +13,6 @@ class Setting extends Model
         'thread_name',
         'thread_email',
         'thread_description',
-        'thread_logo',
-        'thread_favicon',
     ];
 
-    public function getBlogLogoAttribute($value){
-        return asset('back/dist/img/logo-favicon/'.$value);
-    }
 }

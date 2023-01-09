@@ -18,8 +18,6 @@ return new class extends Migration
             $table->string('thread_name')->nullable();
             $table->string('thread_email')->nullable();
             $table->text('thread_description')->nullable();
-            $table->string('thread_logo')->nullable();
-            $table->string('thread_favicon')->nullable();
             $table->timestamps();
         });
     }
