@@ -15,6 +15,7 @@ class AuthorLoginForm extends Component
     public function mount(){
         $this->returnUrl = request()->returnUrl;
     }
+    
     public function LoginHandler(){
 
         $fieldType = filter_var($this->login_id, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
