@@ -1,17 +1,18 @@
 @extends('back.layouts.pages-layout')
 @section('pagesTitle', isset($pageTitle) ? $pageTitle : 'Add new post')
 @section('content')
-  
+
+<!-- Edit Post Header Detailing-->
 <div class="page-header d-print-none">
     <div class="row align-items-center">
       <div class="col">
         <h2 class="page-title">
-          Edit Post
+          Edit post
         </h2>
       </div>
     </div>
   </div>
-
+  <!-- Creating a route that accesses the update-post function -->
   <form action="{{ route('author.posts.update-post',['post_id'=>Request('post_id')]) }}" method="post" id="editPostForm" enctype="multipart/form-data">
     @csrf
       <div class="card">
@@ -29,33 +30,38 @@
                     <span class="text-danger error-text post_content_error"></span>
                   </div>
             </div>
+
+            <!-- Sorting Post Category, looping through each sub-category.-->
             <div class="col-md-3">
                 <div class="mb-3">
                     <div class="form-label">Post category</div>
                     <select class="form-select" name="post_category">
                       <option value="">No selected</option>
                       @foreach(\App\Models\SubCategory::all() as $category)
-                        <option value="{{ $category->id }}" {{ $post->category_id == $category->id ? 'selected' : '' }} > {{ $category->subcategory_name }}</option>
+                        <option value="{{ $category->id }}" {{ $post->category_id == $category->id ? 'selected' : '' }}>{{ $category->subcategory_name }}</option>
                       @endforeach
                     </select>
                     <span class="text-danger error-text post_category_error"></span>
                   </div>
+
+                  <!-- sorting new featured image -->
                   <div class="mb-3">
-                    <div class="form-label">Featured Image</div>
+                    <div class="form-label">Featured image</div>
                     <input type="file" class="form-control" name="featured_image">
                     <span class="text-danger error-text featured_image_error"></span>
                   </div>
                   <div class="image_holder mb-2" style="max-width: 250px">
-                    <img src="" alt="" class="img-thumbnail" id="image-previewer" data-ijabo-default-img='/storage/images/post_images/thumbnails/resized_{{$post->featured_image}}'>
+                        <img src="" alt="" class="img-thumbnail" id="image-previewer" data-ijabo-default-img='/storage/images/post_images/thumbnails/resized_{{$post->featured_image}}'>
                   </div>
-                  <button type="submit" class="btn btn-primary">Update Post</button>
-                  <button type="submit" class="btn btn-primary">Answer Post</button>
+                  <button type="submit" class="btn btn-primary">Update post</button>
             </div>
            </div>
         </div>
       </div>
   </form>
-</div>
+
+
+@endsection
 
 @endsection
 

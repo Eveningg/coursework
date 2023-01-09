@@ -110,7 +110,7 @@ class AuthorController extends Controller
         }
     }
 
-    //
+    //deleting all the information from an old post, and creating all the new information for a new post.
     public function updatePost(Request $request){
         if( $request->hasFile('featured_image') ){
 
