@@ -1,12 +1,4 @@
 <!doctype html>
-<!--
-* Tabler - Premium and Open Source dashboard template with responsive and high quality UI.
-* @version 1.0.0-beta5
-* @link https://tabler.io
-* Copyright 2018-2022 The Tabler Authors
-* Copyright 2018-2022 codecalm.net Paweł Kuna
-* Licensed under MIT (https://github.com/tabler/tabler/blob/master/LICENSE)
--->
 <html lang="en">
   <head>
     <meta charset="utf-8"/>
@@ -20,7 +12,7 @@
     <link href="./back/dist/css/tabler-payments.min.css" rel="stylesheet"/>
     <link href="./back/dist/css/tabler-vendors.min.css" rel="stylesheet"/>
     @stack('stylesheets')
-    @livewireScripts
+    @livewireStyles
     <link href="./back/dist/css/demo.min.css" rel="stylesheet"/>
   </head>
   <body  class=" border-top-wide border-primary d-flex flex-column">

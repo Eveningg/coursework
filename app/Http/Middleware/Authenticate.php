@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
+use Illuminate\Support\Facades\URL;
 
 class Authenticate extends Middleware
 {
@@ -17,8 +18,8 @@ class Authenticate extends Middleware
         if (! $request->expectsJson()) {
             // return route('login');
             if($request->routeIs('author.*')){
-                session()->flash('fail','you must sign in first!');
-                return route('author.login');
+                session()->flash('fail','You Need To Sign In!');
+                return route('author.login',['fail'=>true,'returnUrl'=>URL::current()]);
             };
         }
     }
